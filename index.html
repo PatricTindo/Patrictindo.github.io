@@ -52,30 +52,39 @@
         <div class="page-picker">
           <span class="section-kicker">02 / choose a page</span>
           <div class="page-buttons" id="page-buttons" role="group" aria-label="Coloring pages"></div>
+          <label class="upload-pages"><span aria-hidden="true">＋</span> Load the four pages<input id="page-upload" type="file" accept="image/*" multiple></label>
+        </div>
+        <div class="brush-picker">
+          <div class="brush-label"><span class="section-kicker">03 / brush size</span><strong id="brush-size-label">medium</strong></div>
+          <input id="brush-size" type="range" min="3" max="42" value="14" aria-label="Brush size">
+          <div class="brush-preview"><span id="brush-preview-dot"></span></div>
         </div>
         <div class="tip-box">
           <span class="tip-icon" aria-hidden="true">✎</span>
           <p>Pick any color, then click anywhere on the page to make it yours.</p>
         </div>
-        <button class="reset-button" id="reset-button" type="button"><span aria-hidden="true">↻</span> Start over</button>
+        <div class="action-buttons">
+          <button class="download-button" id="download-button" type="button"><span aria-hidden="true">↓</span> Download picture</button>
+          <button class="reset-button" id="reset-button" type="button"><span aria-hidden="true">↻</span> Start over</button>
+        </div>
       </aside>
 
       <section class="coloring-panel">
         <div class="panel-heading canvas-heading">
           <div>
-            <span class="section-kicker">03 / make it yours</span>
-            <h2>My happy little garden</h2>
+            <span class="section-kicker">04 / make it yours</span>
+            <h2>Giraffe safari</h2>
           </div>
           <span class="completion-badge" id="completion-badge">in progress</span>
         </div>
         <div class="canvas-frame">
           <div class="canvas-paper" id="canvas-paper">
             <div class="paper-title">For Lærke <span>♥</span></div>
-            <svg id="coloring-svg" viewBox="0 0 700 530" role="img" aria-label="Blank garden coloring page"></svg>
+            <div class="drawing-surface"><canvas id="drawing-canvas" width="700" height="980" aria-label="Freehand coloring page"></canvas></div>
             <div class="paper-footer">colors → giggles → magic</div>
           </div>
         </div>
-        <p class="canvas-hint"><span aria-hidden="true">✦</span> Choose a color, then click any shape you like.</p>
+        <p class="canvas-hint"><span aria-hidden="true">✦</span> Pick a color and draw anywhere on the page.</p>
       </section>
     </section>
 
