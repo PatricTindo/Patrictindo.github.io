@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lærke's Color Quest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Lærke's Color Quest home">
+        <span class="brand-star" aria-hidden="true">✦</span>
+        <span>Lærke's<br><strong>Color Quest</strong></span>
+      </a>
+      <div class="top-note"><span class="sparkle" aria-hidden="true">✷</span> made with happy colors</div>
+    </header>
+
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">a tiny coloring adventure</p>
+        <h1>Color your<br><em>little heart</em> out.</h1>
+        <p class="intro">Pick a crayon, color outside the lines, and make this page wonderfully, gloriously yours.</p>
+        <div class="hero-stats" aria-label="Coloring progress">
+          <div class="progress-wrap">
+            <div class="progress-label"><span>page progress</span><strong id="progress-text">0%</strong></div>
+            <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+          </div>
+          <span class="heart-meter" aria-hidden="true">♡</span>
+        </div>
+      </div>
+      <div class="hero-doodle" aria-hidden="true">
+        <span class="doodle-line line-one"></span>
+        <span class="doodle-line line-two"></span>
+        <span class="tiny-heart">♥</span>
+        <span class="tiny-star">✦</span>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="Coloring book workspace">
+      <aside class="palette-panel">
+        <div class="panel-heading">
+          <span class="section-kicker">01 / choose</span>
+          <h2>Pick a crayon</h2>
+        </div>
+        <div class="palette" id="palette" role="group" aria-label="Color palette"></div>
+        <div class="selected-color">
+          <span class="selected-swatch" id="selected-swatch"></span>
+          <span>your color</span>
+          <strong id="selected-name">Strawberry</strong>
+        </div>
+        <div class="page-picker">
+          <span class="section-kicker">02 / choose a page</span>
+          <div class="page-buttons" id="page-buttons" role="group" aria-label="Coloring pages"></div>
+        </div>
+        <div class="tip-box">
+          <span class="tip-icon" aria-hidden="true">✎</span>
+          <p>Pick any color, then click anywhere on the page to make it yours.</p>
+        </div>
+        <button class="reset-button" id="reset-button" type="button"><span aria-hidden="true">↻</span> Start over</button>
+      </aside>
+
+      <section class="coloring-panel">
+        <div class="panel-heading canvas-heading">
+          <div>
+            <span class="section-kicker">03 / make it yours</span>
+            <h2>My happy little garden</h2>
+          </div>
+          <span class="completion-badge" id="completion-badge">in progress</span>
+        </div>
+        <div class="canvas-frame">
+          <div class="canvas-paper" id="canvas-paper">
+            <div class="paper-title">For Lærke <span>♥</span></div>
+            <svg id="coloring-svg" viewBox="0 0 700 530" role="img" aria-label="Blank garden coloring page"></svg>
+            <div class="paper-footer">colors → giggles → magic</div>
+          </div>
+        </div>
+        <p class="canvas-hint"><span aria-hidden="true">✦</span> Choose a color, then click any shape you like.</p>
+      </section>
+    </section>
+
+    <footer class="footer"><span>made for Lærke</span><span class="footer-dots" aria-hidden="true">● ● ●</span><span>one color at a time</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
