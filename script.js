@@ -27,6 +27,10 @@ let selectedColor = colors[0];
 let currentPage = 0;
 let drawing = false;
 let hasArtwork = false;
+const activePointers = new Set();
+let usingGesture = false;
+let strokeSnapshot = null;
+let artworkBeforeStroke = false;
 let toastTimer;
 
 function savedPages() {
@@ -118,6 +122,21 @@ function canvasPoint(event) {
 }
 
 function startDrawing(event) {
+  activePointers.add(event.pointerId);
+  if (activePointers.size > 1) {
+    usingGesture = true;
+    if (drawing) {
+      drawing = false;
+      context.closePath();
+      if (strokeSnapshot) context.putImageData(strokeSnapshot, 0, 0);
+      hasArtwork = artworkBeforeStroke;
+      saveCurrentPage();
+    }
+    return;
+  }
+  if (usingGesture) return;
+  strokeSnapshot = context.getImageData(0, 0, canvas.width, canvas.height);
+  artworkBeforeStroke = hasArtwork;
   drawing = true;
   try { canvas.setPointerCapture(event.pointerId); } catch (error) {}
   const point = canvasPoint(event);
@@ -129,7 +148,7 @@ function startDrawing(event) {
 }
 
 function draw(event) {
-  if (!drawing) return;
+  if (!drawing || usingGesture) return;
   const point = canvasPoint(event);
   const previousLineWidth = context.lineWidth;
   context.lineWidth = previousLineWidth * 0.72;
@@ -139,10 +158,14 @@ function draw(event) {
   saveCurrentPage();
 }
 
-function stopDrawing() {
+function stopDrawing(event) {
+  activePointers.delete(event.pointerId);
+  if (activePointers.size > 0) return;
+  usingGesture = false;
   if (!drawing) return;
   drawing = false;
   context.closePath();
+  strokeSnapshot = null;
   if (event?.pointerId !== undefined && canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
   saveCurrentPage();
   progressText.textContent = 'in progress';
